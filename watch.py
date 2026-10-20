@@ -114,7 +114,12 @@ def main():
             log("load_forecast", tomorrow, f"{stamp} no file for {month}")
         else:
             upd = pd.Timestamp(f["lastUpdatedTimestamp"]).tz_convert(TZ).strftime("%Y-%m-%d %H:%M")
-            counts = ", ".join(f"{z} {len(rows_of(df, code))}" for z, code in ZONES.items())
+            parts = []
+            for z, code in ZONES.items():
+                r = rows_of(df, code)
+                last = pd.to_datetime(r["UpdateTime(UTC)"]).max() if len(r) else None
+                parts.append(f"{z} {len(r)} (rows' UpdateTime(UTC) max {last})")
+            counts = ", ".join(parts)
             log("load_forecast", tomorrow, f"{stamp} {f['name']} UpdateTime {upd} local; tomorrow's rows: {counts}")
     except Exception as e:  # noqa: BLE001
         log("load_forecast", tomorrow, f"{stamp} ERROR {type(e).__name__}: {str(e)[:150]}")
