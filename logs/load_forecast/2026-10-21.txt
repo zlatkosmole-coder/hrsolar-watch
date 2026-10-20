@@ -1,1 +1,2 @@
 2026-10-20 18:36 2026_10_DayAheadTotalLoadForecast_6.1.B_r3.csv UpdateTime 2026-10-20 18:21 local; tomorrow's rows: HR 96, SI 96, HU 96, AT 96, DE_LU 96, IT_NORD 96
+2026-10-20 18:37 2026_10_DayAheadTotalLoadForecast_6.1.B_r3.csv UpdateTime 2026-10-20 18:21 local; tomorrow's rows: HR 96, SI 96, HU 96, AT 96, DE_LU 96, IT_NORD 96
