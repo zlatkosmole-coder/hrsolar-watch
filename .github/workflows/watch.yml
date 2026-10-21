@@ -1,18 +1,19 @@
 name: watch
 on:
   schedule:
-    - cron: "*/15 4-12 * * *"    # every 15 min, 04-12 UTC (06-14 h local in summer, 05-13 h in winter)
-    - cron: "*/30 13-18 * * *"   # every 30 min until the evening
+    - cron: "*/15 4-12 * * *"    # backup only: the chain below re-dispatches itself (GitHub's cron skips slots)
+    - cron: "*/30 13-18 * * *"
   workflow_dispatch: {}
 permissions:
   contents: write
+  actions: write
 concurrency:
   group: watch
   cancel-in-progress: false
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 380
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -31,3 +32,24 @@ jobs:
           git add logs
           git diff --cached --quiet || git commit -m "watch $(date -u +%Y-%m-%dT%H:%MZ)"
           git pull --rebase --quiet && git push --quiet
+      - name: wait for the next slot and dispatch the next run (the chain that replaces GitHub's cron)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # another queued run continues the chain instead of this one (no doubling)
+          others=$(gh run list -R "$GITHUB_REPOSITORY" --workflow watch --status queued --json databaseId --jq 'length')
+          if [ "${others:-0}" -gt 0 ]; then echo "a queued run continues the chain"; exit 0; fi
+          now=$(date -u +%s); h=$((10#$(date -u +%H))); m=$((10#$(date -u +%M))); s=$((10#$(date -u +%S)))
+          if [ $h -ge 4 ] && [ $h -lt 13 ]; then step=15
+          elif [ $h -ge 13 ] && [ $h -lt 19 ]; then step=30
+          else step=0; fi
+          if [ $step -gt 0 ]; then
+            next=$(( now - (m % step) * 60 - s + step * 60 ))
+          else
+            next=$(date -u -d "$(date -u +%F) 04:00" +%s); [ $next -le $now ] && next=$(date -u -d "$(date -u +%F) 04:00 + 1 day" +%s)
+          fi
+          wait=$(( next - now )); [ $wait -lt 30 ] && wait=30
+          cap=$((5 * 3600 + 40 * 60)); [ $wait -gt $cap ] && wait=$cap
+          echo "sleeping $wait s (until $(date -u -d @$((now + wait)) +%H:%M) UTC)"
+          sleep $wait
+          gh workflow run watch -R "$GITHUB_REPOSITORY"
