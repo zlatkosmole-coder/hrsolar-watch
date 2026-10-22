@@ -36,3 +36,4 @@
 2026-10-22 14:30 2026_10_GenerationForecastsForWindAndSolar_14.1.D_r3.csv UpdateTime 2026-10-22 14:15 local; tomorrow's quarters 0; rows' UpdateTime(UTC) max None
 2026-10-22 14:45 2026_10_GenerationForecastsForWindAndSolar_14.1.D_r3.csv UpdateTime 2026-10-22 14:15 local; tomorrow's quarters 0; rows' UpdateTime(UTC) max None
 2026-10-22 15:00 2026_10_GenerationForecastsForWindAndSolar_14.1.D_r3.csv UpdateTime 2026-10-22 14:15 local; tomorrow's quarters 0; rows' UpdateTime(UTC) max None
+2026-10-22 15:30 ERROR RuntimeError: /listFolder: HTTP 599
