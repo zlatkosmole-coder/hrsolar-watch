@@ -1,8 +1,8 @@
 name: watch
 on:
   schedule:
-    - cron: "*/15 4-12 * * *"    # backup only: the chain below re-dispatches itself (GitHub's cron skips slots)
-    - cron: "*/30 13-18 * * *"
+    - cron: "50 3 * * *"         # one daily restart of the chain below (a concurrency group keeps only one pending
+                                 # run: frequent crons cancelled the chain's own pending runs on 2026-10-21)
   workflow_dispatch: {}
 permissions:
   contents: write
