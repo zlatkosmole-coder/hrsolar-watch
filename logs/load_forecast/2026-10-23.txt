@@ -1,0 +1,1 @@
+2026-10-22 02:40 2026_10_DayAheadTotalLoadForecast_6.1.B_r3.csv UpdateTime 2026-10-22 01:40 local; tomorrow's rows: HR 0 (rows' UpdateTime(UTC) max None), SI 0 (rows' UpdateTime(UTC) max None), HU 0 (rows' UpdateTime(UTC) max None), AT 96 (rows' UpdateTime(UTC) max 2026-10-21 10:30:37), DE_LU 0 (rows' UpdateTime(UTC) max None), IT_NORD 0 (rows' UpdateTime(UTC) max None)
