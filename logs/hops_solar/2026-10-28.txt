@@ -1,0 +1,1 @@
+2026-10-27 01:41 2026_10_GenerationForecastsForWindAndSolar_14.1.D_r3.csv UpdateTime 2026-10-27 01:03 local; tomorrow's quarters 0; rows' UpdateTime(UTC) max None
