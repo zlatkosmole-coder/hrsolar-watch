@@ -41,3 +41,4 @@
 2026-11-21 15:30 2026_11_GenerationForecastsForWindAndSolar_14.1.D_r3.csv UpdateTime 2026-11-21 15:23 local; tomorrow's quarters 96; rows' UpdateTime(UTC) max 2026-11-21 13:43:05
 2026-11-21 16:00 2026_11_GenerationForecastsForWindAndSolar_14.1.D_r3.csv UpdateTime 2026-11-21 15:44 local; tomorrow's quarters 96; rows' UpdateTime(UTC) max 2026-11-21 13:43:05
 2026-11-21 16:30 2026_11_GenerationForecastsForWindAndSolar_14.1.D_r3.csv UpdateTime 2026-11-21 16:06 local; tomorrow's quarters 96; rows' UpdateTime(UTC) max 2026-11-21 13:43:05
+2026-11-21 17:00 2026_11_GenerationForecastsForWindAndSolar_14.1.D_r3.csv UpdateTime 2026-11-21 16:53 local; tomorrow's quarters 96; rows' UpdateTime(UTC) max 2026-11-21 15:18:19
